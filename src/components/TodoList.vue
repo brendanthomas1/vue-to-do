@@ -8,27 +8,27 @@
     </div>
 
     <ul>
-      <li v-for='todo in todos'
-          v-on:click="toggleDone(todo)"
-          v-bind:style="{ textDecoration: (todo.done ? 'line-through' : '')}"
-      >
-        {{ todo.text }}
-      </li>
+      <todo-item v-for='todo in todos' v-bind:todo='todo'
+      v-on:toggle-done="toggleDone(todo)">
+      </todo-item>
     </ul>
   </div>
 </template>
 
 <script>
+import TodoItem from './TodoItem'
+
 let todos = [{text: 'Make spaghetti', done: false}]
 
 export default {
-  name: 'TodoList',
+  name: 'todo-list',
   data () {
     return {
       todos: todos,
       msg: 'Todos'
     }
   },
+  components: { TodoItem },
 
   methods: {
     addTodo: () => {
