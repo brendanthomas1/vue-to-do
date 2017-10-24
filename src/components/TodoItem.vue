@@ -1,6 +1,11 @@
 <template>
-  <li v-on:click="toggleDone" v-bind:class="{ strikethrough: todo.done }">
-    {{ todo.text }}
+  <li>
+    <span v-on:click="toggleDone" v-bind:class="{ strikethrough: todo.done }">
+      {{ todo.text }}
+    </span>
+    <span v-on:click="destroyTodo">
+      <a href="#">Destroy</a>
+    </span>
   </li>
 </template>
 
@@ -10,7 +15,11 @@ export default {
   props: ['todo'],
   methods: {
     toggleDone: function () {
+      // can't use arrow functions with 'this'
       this.$emit('toggle-done')
+    },
+    destroyTodo: function () {
+      this.$emit('destroy-todo')
     }
   }
 }

@@ -9,7 +9,8 @@
 
     <ul>
       <todo-item v-for='todo in todos' v-bind:todo='todo'
-      v-on:toggle-done="toggleDone(todo)">
+      v-on:toggle-done="toggleDone(todo)"
+      v-on:destroy-todo="destroyTodo(todo)">
       </todo-item>
     </ul>
   </div>
@@ -37,7 +38,12 @@ export default {
       input.value = ''
     },
 
-    toggleDone: (todo) => (todo.done = !todo.done)
+    toggleDone: (todo) => (todo.done = !todo.done),
+
+    destroyTodo: (todo) => {
+      const index = todos.findIndex(t => t.text === todo.text)
+      todos.splice(index, 1)
+    }
   }
 }
 </script>
