@@ -32,9 +32,9 @@ export default {
   components: { TodoItem },
 
   methods: {
-    addTodo: () => {
+    addTodo: function () {
       let input = document.getElementById('new-todo-input')
-      todos.push({text: input.value, done: false})
+      this.todos.push({text: input.value, done: false})
       input.value = ''
     },
 
